@@ -1,0 +1,23 @@
+name : 'water_quality_dbt'
+version: '1.0.0'
+
+# Require a specific dbt version for reproducibility
+require-dbt-version: [">=1.7.0", "<2.0.0"]
+
+profile: 'water_quality_dbt'
+
+model-paths: ["models"]
+#analysis-paths: ["analyses"]
+#test-paths: ["tests"]
+#seed-paths: ["seeds"]
+#macro-paths: ["macros"]
+#snapshot-paths: ["snapshots"]
+
+models:
+  water_quality_dbt:
+    staging:
+      +materialized: view      # staging models = views (lightweight)
+    intermediate:
+      +materialized: table     # intermediate models = tables (for performance)
+    marts:
+      +materialized: table     # mart models = tables (dashboard reads from these)

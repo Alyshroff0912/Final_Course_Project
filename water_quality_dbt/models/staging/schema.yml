@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: raw
+    database: final-course-project-491204
+    schema: final_project_water_quality_dataset
+    tables:
+      - name: raw_zipcheckup
+      - name: raw_ccr_enriched
+      - name: raw_l3_metrics

@@ -1,0 +1,7 @@
+prefect 
+prefect-gcp 
+pandas 
+pyarrow 
+requests 
+google-cloud-storage 
+google-cloud-bigquery
