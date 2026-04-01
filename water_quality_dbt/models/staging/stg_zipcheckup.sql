@@ -1,0 +1,29 @@
+SELECT
+        zip,
+        CAST(city AS STRING)  AS city,
+        CAST(state AS STRING) AS state,
+        CAST(latitude AS FLOAT64) AS latitude,
+        CAST(longitude AS FLOAT64) AS longitude,
+        CAST(home_safety_score as INTEGER) AS home_safety_score,
+        CAST(home_safety_grade AS STRING) AS home_safety_grade,
+        CAST(total_violations AS INTEGER) AS total_violations,
+        CAST(health_violations AS INTEGER) AS health_violations,
+        CAST(unresolved_violations AS INTEGER) AS unresolved_violations,
+        CAST(contaminant_count AS INTEGER) AS contaminant_count,
+        CAST(health_contaminant_names AS STRING) AS health_contaminant_names,
+        CAST(lead_level_mg_l AS FLOAT64) AS lead_level_mg_l,
+        CAST(copper_level_mg_l AS FLOAT64) AS copper_level_mg_l,
+        CAST(radon_zone AS INTEGER) AS radon_zone,
+        CAST(water_source AS STRING) AS water_source,
+        CAST(system_name AS STRING) AS system_name,
+        CAST(pwsid AS STRING) AS pwsid,
+        CAST(population AS INTEGER) AS population,
+        CAST(ccr_contaminant_count AS INTEGER) AS ccr_contaminant_count,
+        CAST(ccr_violation_count AS INTEGER) AS ccr_violation_count,
+        CAST(enforcement_action_count AS INTEGER) AS enforcement_action_count,
+        CAST(enforcement_health_violations AS INTEGER) AS enforcement_health_violations,
+        CAST(has_active_issues AS BOOLEAN) AS has_active_issues,
+        CAST(boil_water_advisories AS INTEGER) AS boil_water_advisories
+FROM {{ source('raw', 'raw_zipcheckup') }}
+WHERE city IS NOT NULL
+AND state IS NOT NULL
