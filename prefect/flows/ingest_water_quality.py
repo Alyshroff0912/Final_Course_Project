@@ -37,12 +37,11 @@ def clean_data(name: str, df: pd.DataFrame) -> pd.DataFrame:
     # standarized column names to lowercase and replace spaces with underscores
     df.columns = df.columns.str.lower().str.replace(' ', '_')
 
-    # fix mixed-type columns: convert object columns that should be numeric
-    for col in df.select_dtypes(include='object').columns:
-        try:
+    # fix only the known mixed-type column (ccr_violation_count has strings + floats)
+    NUMERIC_COLUMNS = ['ccr_violation_count']
+    for col in NUMERIC_COLUMNS:
+        if col in df.columns:
             df[col] = pd.to_numeric(df[col], errors='coerce')
-        except (ValueError, TypeError):
-            pass  # keep as string if it can't be converted
 
     #adding ingestion date column to keep track of when data was ingested
     df['ingestion_date'] = pd.to_datetime('today').date()
