@@ -1,5 +1,5 @@
 SELECT
-        zip,
+        CAST(zip AS STRING) AS zip,
         CAST(city AS STRING)  AS city,
         CAST(state AS STRING) AS state,
         CAST(latitude AS FLOAT64) AS latitude,

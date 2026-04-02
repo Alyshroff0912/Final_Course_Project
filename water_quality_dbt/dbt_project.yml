@@ -17,7 +17,5 @@ models:
   water_quality_dbt:
     staging:
       +materialized: view      # staging models = views (lightweight)
-    intermediate:
-      +materialized: table     # intermediate models = tables (for performance)
     marts:
       +materialized: table     # mart models = tables (dashboard reads from these)
