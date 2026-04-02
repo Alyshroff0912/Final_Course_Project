@@ -78,9 +78,14 @@ def load_to_bigquery(name: str, gcp_path: str):
     client = bigquery.Client.from_service_account_json(CRED_PATH)
 
     job_config = bigquery.LoadJobConfig(
-        source_format = bigquery.SourceFormat.PARQUET,
-        write_disposition = bigquery.WriteDisposition.WRITE_TRUNCATE
-    )
+    source_format=bigquery.SourceFormat.PARQUET,
+    write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE,
+    time_partitioning=bigquery.TimePartitioning(
+        type_=bigquery.TimePartitioningType.DAY,
+        field="ingestion_date",
+    ),
+    clustering_fields=["state"],
+)
 
     url = f"gs://{BUCKET_NAME}/{gcp_path}"
     load_job = client.load_table_from_uri(url, table_id, job_config=job_config)
