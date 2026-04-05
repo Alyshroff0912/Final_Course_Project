@@ -12,7 +12,7 @@ from google.cloud import storage, bigquery
 PROJECT_ID    = "final-course-project-491204"        
 BUCKET_NAME   = "final_project_water_quality_raw"    
 BQ_DATASET    = "final_project_water_quality_dataset" 
-CRED_PATH = os.getenv("GOOGLE_APPLICATION_CREDENTIALS", "./keys/cred_keys.json")            
+CRED_PATH = os.getenv("GOOGLE_APPLICATION_CREDENTIALS", "./keys/cred_keys.json")          
 
 DATASETS = {
     # Main dataset — violations, lead/copper, scores   
@@ -84,7 +84,8 @@ def load_to_bigquery(name: str, gcp_path: str):
         type_=bigquery.TimePartitioningType.DAY,
         field="ingestion_date",
     ),
-    clustering_fields=["state"],
+    clustering_fields=["state"] if name == "zipcheckup" else ["zip"],
+
 )
 
     url = f"gs://{BUCKET_NAME}/{gcp_path}"
