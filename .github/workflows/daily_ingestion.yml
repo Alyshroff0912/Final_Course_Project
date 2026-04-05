@@ -19,7 +19,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install pandas requests prefect prefect-gcp google-cloud-storage google-cloud-bigquery pyarrow
+        run: pip install pandas requests prefect prefect-gcp google-cloud-storage google-cloud-bigquery pyarrow dbt-bigquery
 
       - name: Authenticate to GCP
         uses: google-github-actions/auth@v2
@@ -29,6 +29,23 @@ jobs:
       - name: Run ingestion pipeline
         run: python prefect/flows/ingest_water_quality.py
     
+      - name: Set up dbt profiles
+        run: |
+          mkdir -p ~/.dbt
+          cat > ~/.dbt/profiles.yml <<'PROFILES'
+          water_quality_dbt:
+            target: dev
+            outputs:
+              dev:
+                type: bigquery
+                method: oauth
+                project: final-course-project-491204
+                dataset: final_project_water_quality_dataset
+                location: US
+                threads: 1
+          PROFILES
+          sed -i 's/^          //' ~/.dbt/profiles.yml
+
       - name: Run dbt models
         run: |
           cd water_quality_dbt
