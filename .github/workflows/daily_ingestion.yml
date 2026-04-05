@@ -27,6 +27,9 @@ jobs:
           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
       - name: Run ingestion pipeline
+        env:
+          PREFECT_HOME: /tmp/prefect
+          PREFECT_SERVER_EPHEMERAL_STARTUP_TIMEOUT_SECONDS: "120"
         run: python prefect/flows/ingest_water_quality.py
     
       - name: Set up dbt profiles
