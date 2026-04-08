@@ -121,7 +121,7 @@ water_quality_dbt/models/
 
 ## Dashboard
 
-**Live Dashboard:** [Looker Studio Link]([REPLACE_WITH_YOUR_LOOKER_STUDIO_URL](https://lookerstudio.google.com/s/kvoglxC7c3Q))
+**Live Dashboard:** [Looker Studio Link]([https://lookerstudio.google.com/s/kvoglxC7c3Q])
 
 The dashboard contains multiple tiles, including:
 - **Geo Bubble Map** — Compound risk hotspots across the US (size = total violations, color = home safety grade)
