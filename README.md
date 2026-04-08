@@ -124,13 +124,16 @@ water_quality_dbt/models/
 **Live Dashboard:** [Looker Studio Link](https://lookerstudio.google.com/reporting/d1fa37cf-69f6-45ad-aa31-776f149ca8fc)
 
 The dashboard contains multiple tiles, including:
-- **Geo Bubble Map** — Compound risk hotspots across the US (size = total violations, color = home safety grade)
-- **Bar Chart** — Top 10 states by enforcement actions
+- **Geo Heat Map** — 90th percentile lead level in ppb by Zipcode.This number is calculated from all the lead sample results taken at sites within a water system during a monitoring period. If your water supply’s 90th percentile number is over 12 ppb, your community has a lead Action Level Exceedance
 - **Scatter Plot** — Compliance risk vs enforcement actions
-- **KPI Scorecards** — Total violations, total enforcement actions, average safety score
-- **Pivot Tables** — State × compliance label distribution
+- **Pivot Tables** — Correlation between lead exposure, water source and health violation
+- **Stacked Bar Chart** - CCR reported violation that addressed by enforcement actions
 
-![Dashboard Screenshot](REPLACE_WITH_SCREENSHOT_PATH)
+![Geo Bubble Map](./dashboard_screenshot/google_heat_map.png)
+![Scatter Plot](./dashboard_screenshot/scatter_plot.png)
+![Pivot Table](./dashboard_screenshot/pivot_table.png)
+![Stacked Bar Chart](./dashboard_screenshot/stacked_bar_chart.png)
+
 
 ---
 
@@ -218,7 +221,7 @@ dbt run            # builds all staging views and mart tables
 
 ### Step 7 — View the Dashboard
 
-Open the [Looker Studio dashboard](REPLACE_WITH_YOUR_LOOKER_STUDIO_URL) — it reads directly from the BigQuery mart tables.
+Open the [Looker Studio dashboard](https://lookerstudio.google.com/reporting/d1fa37cf-69f6-45ad-aa31-776f149ca8fc) — it reads directly from the BigQuery mart tables.
 
 ---
 
