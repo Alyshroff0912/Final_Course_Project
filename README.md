@@ -83,7 +83,7 @@ GitHub Actions triggers the full pipeline daily at 12:00 PM UTC.
 | **Data Warehouse** | BigQuery |
 | **Transformations** | dbt (dbt-bigquery) |
 | **Dashboard** | Looker Studio |
-| **CI/CD & Scheduling** | GitHub Actions |
+| **Scheduling** | GitHub Actions |
 
 ---
 
